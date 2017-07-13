@@ -9,6 +9,8 @@
 <%@page import="DAOImpl.SupplierDAOImpl"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Supplier"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,10 +19,11 @@
         <title>JSP Page</title>
     </head>
     <body>
+        ${sessionScope.loggedin.username}
         <%
-            session = request.getSession();
-            Person p =(Person) session.getAttribute("loggedin");
-            out.print(p.getUsername());
+//            session = request.getSession();
+//            Person p =(Person) session.getAttribute("loggedin");
+//            out.print(p.getUsername());
         %>
         <table border="1">
             <tr>
@@ -30,17 +33,25 @@
                 <th colspan="2">Action</th>
             </tr>
             <%
-                List<Supplier> ls =(List<Supplier>) request.getAttribute("listsupplier");
-                for(Supplier s : ls){                                    
+                //List<Supplier> ls =(List<Supplier>) request.getAttribute("listsupplier");
+                //for(Supplier s : ls){                                    
             %>
+            <c:forEach items="${listsupplier}" var="supplier">
             <tr>
-                <td><%=s.getIdSupplier()%></td>
-                <td><%=s.getKodesupplier()%></td>
-                <td><%=s.getNamasupplier()%></td>    
-                <td><a href="formupdatesupplierservlet?id=<%=s.getIdSupplier()%>">Update</a></td>
-                <td><a href="prosesdeletesupplierservlet?id=<%=s.getIdSupplier()%>">Delete</a></td>
+                <%--<%= //s.getIdSupplier()%>--%>
+                <td>${supplier.idSupplier}</td>
+                <%--<%= //s.getKodesupplier()%>--%>
+                <td>${supplier.kodesupplier}</td>
+                <%--<%= //s.getNamasupplier()%>--%>
+                <td>${supplier.namasupplier}</td>
+                
+                <%--<%=s.getIdSupplier()%>--%>
+                <td><a href="formupdatesupplierservlet?id=${supplier.idSupplier}">Update</a></td>
+                    <%--<%= //s.getIdSupplier()%>--%>
+                <td><a href="prosesdeletesupplierservlet?id=${supplier.idSupplier}">Delete</a></td>
             </tr>
-            <%} %>
+            </c:forEach>
+            <%//} %>
         </table>
                 <a href="InsertSupplier.jsp"> Insert Supplier</a>
     </body>

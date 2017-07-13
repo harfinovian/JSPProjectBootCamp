@@ -15,22 +15,20 @@
         <title>JSP Page</title>
     </head>
     <body>
-       <% 
-            Supplier s = (Supplier)request.getAttribute("supplier");
-       %>
+       
         <form method="POST" action="prosesupdatesupplierservlet">
             <table>
                 <tr>
                     <td>Id Supplier</td>
-                    <td><input type="text"name="idsupplier" value="<%=s.getIdSupplier() %>"readonly="readonly"/></td>
+                    <td><input type="text"name="idsupplier" value="${supplier.idSupplier}"readonly="readonly"/></td>
                 </tr>
                 <tr>
                     <td>Kode Supplier : </td>
-                    <td><input type="text" name="kodesupplier"value="<%=s.getKodesupplier()%>"/></td>
+                    <td><input type="text" name="kodesupplier"value="${supplier.kodesupplier}"/></td>
                 </tr>
                 <tr>
                     <td>Nama Supplier : </td>
-                    <td><input type="text" name="namasupplier"value="<%=s.getNamasupplier()%>"/></td>
+                    <td><input type="text" name="namasupplier"value="${supplier.namasupplier}"/></td>
                 </tr>
                 <tr>
                     <td colspan="2">
