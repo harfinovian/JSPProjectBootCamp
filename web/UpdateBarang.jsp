@@ -4,9 +4,9 @@
     Author     : C7
 --%>
 
-<%@page import="java.util.List"%>
+<%--<%@page import="java.util.List"%>
 <%@page import="model.Barang"%>
-<%@page import="model.Supplier"%>
+<%@page import="model.Supplier"%>--%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -32,11 +32,11 @@
                 </tr>
                 <tr>
                     <td>Harga : </td>
-                    <td><input type="text" name="harga"value="${barang.harga}"/></td>
+                    <td><input type="text" name="harga" value="${barang.harga}"/></td>
                 </tr>
                 <tr>
                     <td>Stok : </td>
-                    <td><input type="text" name="stok"value="${barang.stok}"/></td>
+                    <td><input type="text" name="stok" value="${barang.stok}"/></td>
                 </tr>
                 <tr>
                     <td>Supplier : </td>
@@ -48,10 +48,11 @@
                              //if(s.getIdSupplier() == b.getSUPPLIERidSupplier().getIdSupplier()){
                              %>
                              <c:forEach items="${supplier}" var="suppliers">
-                             <c:if test="${suppliers.idSupplier} == ${barang.sUPPLIERidSupplier.idSupplier}">
                                  <%--<%=s.getIdSupplier()%><%=s.getNamasupplier()%>--%>
-                             <option value="${suppliers.idSupplier}" selected>${suppliers.namaSupplier}</option>
-                             </c:if>
+                             <option <c:if test = "${suppliers.idSupplier} == ${sbarang.idSupplier}"> 
+                                     selected="${sbarang.idSupplier}"
+                                     </c:if>value="${suppliers.idSupplier}">
+                                     ${suppliers.namaSupplier}</option>
                             <%
                                   //}else{
                              %>

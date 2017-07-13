@@ -12,6 +12,7 @@ import DAOImpl.SupplierDAOImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -47,7 +48,9 @@ public class FormUpdateBarangServlet extends HttpServlet {
             SupplierDAO sdao = new SupplierDAOImpl();            
             List<Supplier> s = sdao.getAll();
             request.setAttribute("supplier", s);
-            request.getRequestDispatcher("UpdateBarang.jsp").forward(request, response);
+            request.setAttribute("sbarang", b.getSUPPLIERidSupplier());
+            RequestDispatcher rd = request.getRequestDispatcher("UpdateBarang.jsp");
+            rd.forward(request, response);
 
         }
     }
